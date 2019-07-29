@@ -5,7 +5,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import ShopPage from "./pages/shop/shop.component.jsx";
 import CheckOutPage from "./pages/checkout/checkout.component.jsx";
 import Header from "./components/header/header.component";
-import SignInAndSigngUpPage from "./pages/sin-in-and-sign-up/sin-in-and-sign-up.component";
+import SignInAndSigngUpPage from "./pages/sin-in-and-sign-up/sign-in-and-sign-up.component";
 import { auth, createUserProfaleDocument } from "./firebase/firabase.utils";
 import { connect } from "react-redux";
 import { setCurrentUser } from "./redux/user/user.actions";
