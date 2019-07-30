@@ -7,7 +7,7 @@ const config = {
   authDomain: "crown-db-dd6d4.firebaseapp.com",
   databaseURL: "https://crown-db-dd6d4.firebaseio.com",
   projectId: "crown-db-dd6d4",
-  storageBucket: "",
+  storageBucket: "crown-db-dd6d4.appspot.com",
   messagingSenderId: "134300940982",
   appId: "1:134300940982:web:aa534b1dcf760c2e"
 };
@@ -36,7 +36,39 @@ export const createUserProfaleDocument = async (userAuth, aditionalData) => {
   return userRef;
 };
 
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
+  const collectionRef = firestore.collection(collectionKey);
+
+  const batch = firestore.batch();
+  objectsToAdd.forEach(obj => {
+    const newDocRef = collectionRef.doc();
+    batch.set(newDocRef, obj);
+  });
+  return await batch.commit();
+};
+
 firebase.initializeApp(config);
+
+export const convertColectionSnapshotToMap = collectionsSnapshot => {
+  const transformedCollection = collectionsSnapshot.docs.map(docSnapshot => {
+    const { title, items } = docSnapshot.data();
+
+    return {
+      routeName: encodeURI(title.toLowerCase()),
+      id: docSnapshot.id,
+      title,
+      items
+    };
+  });
+
+  return transformedCollection.reduce((accumulator, collection) => {
+    accumulator[collection.title.toLowerCase()] = collection;
+    return accumulator;
+  }, {});
+};
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
