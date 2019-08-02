@@ -17,3 +17,12 @@ export const selectCollectionsForPreview = createSelector(
   collections =>
     collections ? Object.keys(collections).map(key => collections[key]) : []
 );
+export const selectCollectionFetching = createSelector(
+  [selectShop],
+  shop => shop.isFetching
+);
+
+export const selectCollectionLeaded = createSelector(
+  [selectShop],
+  shop => !!shop.collections //we get the boolean value of the collections !! important not an object !!
+);
