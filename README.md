@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #LIVE PREVIEW at > https://crown-chloting.herokuapp.com/
+=======
+# LIVE PREVIEW at > https://crown-chloting.herokuapp.com/
+>>>>>>> f2a49d7ef84200e5c4bf22390ec1b4894ae0c5e0
 
 # How to fork and clone
 
